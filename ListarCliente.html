@@ -1,64 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="ListarCliente.js"></script>
-    <script language="javascript" type="text/javascript">
-        var request = null;
-
-        function createRequest() {
-            try {
-                request = new XMLHttpRequest();
-            } catch (trymicrosoft) {
-                try {
-                    request = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch (othermicrosoft) {
-                    try {
-                        request = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (failed) {
-                        request = null;
-                    }
-                }
-            }
-
-            if (request == null)
-                alert("Error creating request object!");
-        }
-
-        function showUser(str) {
-            if (str == "") {
-                document.getElementById("txtHint").innerHTML = "";
-                return;
-            } else {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("txtHint").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("GET", "getCliente.php?q=" + str, true);
-                xmlhttp.send();
-            }
-        }
-    </script>
+    <style>
+        
+    </style>
 </head>
-
 <body>
-    <form>
-        <select name="users" onchange="showUser(this.value)">
-          <option value="">Select a person:</option>
-          <option value="1">$Nome</option>
-          <option value="2">Lois Griffin</option>
-          <option value="3">Joseph Swanson</option>
-          <option value="4">Glenn Quagmire</option>
-          </select>
-        </form>
-        <br>
-        <div id="txtHint"><b>Person info will be listed here...</b></div>
     <table>
         <thead>
             <tr>
@@ -67,21 +19,9 @@
                 <th>Altura</th>
                 <th>Peso</th>
             </tr>
-        </thead>
-        <tbody></tbody>
+         </thead>
+         <tbody></tbody>
     </table>
-
-    <p>Last modified: <span id="demo"></span></p>
-
-    <script>
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function () {
-            document.getElementById("demo").innerHTML =
-                this.getResponseHeader("Last-Modified");
-        }
-        xhttp.open("GET", "ajax_info.txt");
-        xhttp.send();
-    </script>
+   
 </body>
-
 </html>

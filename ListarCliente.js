@@ -1,7 +1,7 @@
 let dados;
 
 function carregarDados(funcao){
-    fetch("http://nutricao.atwebpages.com/ListarCliente.php")
+    fetch("http://crudmvc.scienceontheweb.net/ListarCliente.php")
     .then(conteudo => conteudo.text())
     .then(texto => {
         dados = JSON.parse(texto)

@@ -13,7 +13,7 @@ function enviar(event){
 
 function cadastrar(){
     let formData = new FormData(formulario);
-    fetch("http://nutricao.atwebpages.com/CadastrarCliente.php",
+    fetch("http://crudmvc.scienceontheweb.net/CadastrarCliente.php",
     {
         method:'POST',
         body:formData
