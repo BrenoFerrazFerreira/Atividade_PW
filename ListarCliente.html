@@ -29,26 +29,36 @@
                 alert("Error creating request object!");
         }
 
-        function getInformacaoQualquer() {
-            createRequest();
-            var url = "ListarCliente.php";
-            request.open("GET", url, true);
-            request.onreadystatechange = atualizaPagina;
-            request.send(null);
-        }
-
-        function atualizaPagina() {
-                if (request.readyState == 4) {
-                    var respostaDoServidor = request.responseText;
-                }
+        function showUser(str) {
+            if (str == "") {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("txtHint").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "getCliente.php?q=" + str, true);
+                xmlhttp.send();
             }
+        }
     </script>
 </head>
 
 <body>
-    <form method="GET">
-        <input value="Mostre a informação" type="button" onClick="getInformacaoQualquer();" />
-    </form>
+    <form>
+        <select name="users" onchange="showUser(this.value)">
+          <option value="">Select a person:</option>
+          <option value="1">$Nome</option>
+          <option value="2">Lois Griffin</option>
+          <option value="3">Joseph Swanson</option>
+          <option value="4">Glenn Quagmire</option>
+          </select>
+        </form>
+        <br>
+        <div id="txtHint"><b>Person info will be listed here...</b></div>
     <table>
         <thead>
             <tr>
@@ -61,6 +71,17 @@
         <tbody></tbody>
     </table>
 
+    <p>Last modified: <span id="demo"></span></p>
+
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            document.getElementById("demo").innerHTML =
+                this.getResponseHeader("Last-Modified");
+        }
+        xhttp.open("GET", "ajax_info.txt");
+        xhttp.send();
+    </script>
 </body>
 
 </html>
